@@ -107,15 +107,22 @@
   ];
 
 
-  // setInterval utför något varje 2000:e millisekund.
-  setInterval(function() {
+  // setInterval utför något varje x:e millisekund.
+  // Men stoppa efter y antal steg.
+  var timer = setInterval(loop, 500);
+  var y = 0;
 
+  function loop() {
+    if (y == 50) {
+      clearInterval(timer);
+    }
     trams.forEach(function(tram){
       tram.move();
       tram.shout();
     });
+    y++;
 
-  }, 500);
+  }
 
 
 </script>
