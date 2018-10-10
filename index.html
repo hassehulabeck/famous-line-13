@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <section>
+      <h1>Famous linje 13</h1>
+      <ul id = "stops">
+        <li><span id="0" class="stopCircle"></span>Sahlgrenska</li>
+        <li><span id="1" class="stopCircle"></span>Medicinaregatan</li>
+        <li><span id="2" class="stopCircle"></span>Wavrinskys plats</li>
+        <li><span id="3" class="stopCircle"></span>Chalmers</li>
+        <li><span id="4" class="stopCircle"></span>Korsvägen</li>
+        <li><span id="5" class="stopCircle"></span>Scandinavium</li>
+        <li><span id="6" class="stopCircle"></span>Ullevi södra</li>
+        <li><span id="7" class="stopCircle"></span>Centralstationen</li>
+        <li><span id="8" class="stopCircle"></span>Nordstan</li>
+        <li><span id="9" class="stopCircle"></span>Frihamnen</li>
+        <li><span id="10" class="stopCircle"></span>Hjalmar Brantingsplatsen</li>
+        <li><span id="11" class="stopCircle"></span>Vågmästareplatsen</li>
+        <li><span id="12" class="stopCircle"></span>Wieselgrensplatsen</li>
+      </ul>
+    </section>
+  </body>
+</html>
+<script>
+
+  function Tram(linje, position, idNummer, direction, color) {
+    this.linje = linje;
+    this.position = position;
+    this.idNummer = idNummer;
+    this.direction = direction;
+    this.color = color;
+
+    this.move = function() {
+
+      // Om vi är i ena änden, i det här fallet position 12.
+      if (this.position == stops.length-1) {
+        this.position--;
+        this.direction = "Home";
+      }
+      // Om vi är i andra änden, i det här fallet position 0.
+      else if (this.position == 0) {
+        this.position++;
+        this.direction = "Away";
+      }
+      else {
+        if (this.direction == "Home")
+          this.position --;
+        else
+          this.position ++;
+
+      }
+    }
+
+    this.shout = function() {
+      console.log("Spårvagn " + this.idNummer + " är vid hållplats " + stops[this.position].name);
+      if (this.direction == "Home") {
+        var prevPosition = this.position + 1;
+      }
+      else {
+        var prevPosition = this.position - 1;
+      }
+      // Släck den gamla
+      var current = document.getElementById(this.position);
+      current.style.backgroundColor = this.color;
+      var previous = document.getElementById(prevPosition);
+      previous.style.backgroundColor = "white";
+    }
+  }
+
+  function Stop(linje, name) {
+    this.linje = linje;
+    this.name = name;
+  }
+
+
+  tram1 = new Tram(13, 1, 1, "Home", "red");
+  tram2 = new Tram(13, 7, 2, "Away", "yellow");
+  tram3 = new Tram(13, 11, 3, "Home", "#3377d4");
+
+  stopNames = [
+    "Sahlgrenska",
+    "Medicinaregatan",
+    "Wavrinskys plats",
+    "Chalmers",
+    "Korsvägen",
+    "Scandinavium",
+    "Ullevi södra",
+    "Centralstationen",
+    "Nordstan",
+    "Frihamnen",
+    "Hjalmar Brantingsplatsen",
+    "Vågmästareplatsen",
+    "Wieselgrensplatsen"
+  ];
+
+  var stops = [];
+  stopNames.forEach(function(stop){
+    stops.push(new Stop(13, stop));
+  });
+
+  trams = [
+    tram1,
+    tram2,
+    tram3
+  ];
+
+
+  // setInterval utför något varje 2000:e millisekund.
+  setInterval(function() {
+
+    trams.forEach(function(tram){
+      tram.move();
+      tram.shout();
+    });
+
+  }, 500);
+
+
+</script>

@@ -1,0 +1,30 @@
+body {
+  background-color: white;
+}
+section {
+  width: 50%;
+  margin: 0 auto;
+}
+h1 {
+  font-family: arial;
+  font-weight: bold;
+  font-size: 1.25em;  
+}
+ul#stops li {
+  list-style-type: none;
+  font-family: arial;
+  font-weight: bold;
+  font-size: 1.25em;
+  margin: 1em 0 1em 0em;
+}
+.stopCircle {
+  height: 25px;
+  width: 25px;
+  border: 6px solid red;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: white;
+  position: relative;
+  top: 0.5em;
+  margin-right: 0.5em;
+}
