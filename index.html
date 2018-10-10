@@ -21,6 +21,9 @@
         <li><span id="12" class="stopCircle"></span>Wieselgrensplatsen</li>
       </ul>
     </section>
+    <section>
+      <button>Stoppa trafiken</button>      
+    </section>
   </body>
 </html>
 <script>
@@ -54,7 +57,7 @@
     }
 
     this.shout = function() {
-      console.log("Spårvagn " + this.idNummer + " är vid hållplats " + stops[this.position].name);
+      // console.log("Spårvagn " + this.idNummer + " är vid hållplats " + stops[this.position].name);
       if (this.direction == "Home") {
         var prevPosition = this.position + 1;
       }
@@ -108,21 +111,21 @@
 
 
   // setInterval utför något varje x:e millisekund.
-  // Men stoppa efter y antal steg.
+  // Men stoppa när någon klickar på knappen.
   var timer = setInterval(loop, 500);
-  var y = 0;
+
+  var btn = document.querySelector("button");
+  btn.addEventListener('click', stopTheTraffic);
+
+  function stopTheTraffic() {
+    clearInterval(timer);
+  }
 
   function loop() {
-    if (y == 50) {
-      clearInterval(timer);
-    }
     trams.forEach(function(tram){
       tram.move();
       tram.shout();
     });
-    y++;
-
   }
-
 
 </script>

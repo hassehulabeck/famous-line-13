@@ -2,13 +2,18 @@ body {
   background-color: white;
 }
 section {
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
+  display: inline-block;
+}
+button {
+  padding: 3em;
+  margin: 3em 0;
 }
 h1 {
   font-family: arial;
   font-weight: bold;
-  font-size: 1.25em;  
+  font-size: 1.25em;
 }
 ul#stops li {
   list-style-type: none;
